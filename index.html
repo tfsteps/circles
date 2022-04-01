@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.circle {
+			height: 80px;
+			width: 80px;
+			background: red;
+			position: absolute;
+			border-radius: 100px;
+
+		}
+	</style>
+	
+</head>
+<body class="b" style="padding: 0; margin: 0;">
+	<h1 style="margin-top: -6px; margin-left: 20px;">Очки:<span class="score">0</span></h1>
+	<h3 style="margin-top: -10px; margin-left: 20px;">У тебя 9 секунд чтобы собрать все шарики</h3>
+
+
+	
+
+	<div class="circle" style="left: 830px; top: 120px;"></div>
+	<div class="circle" style="left: 1030px; top: 40px;"></div>
+	<div class="circle" style="left: 1000px; top: 550px;"></div>
+	<div class="circle" style="left: 920px; top: 340px;"></div>
+
+	<div class="circle" style="left: 640px; top: 350px;"></div>
+	<div class="circle" style="left: 340px; top: 590px;"></div>
+	<div class="circle" style="left: 1200px; top: 400px;"></div>
+	<div class="circle" style="left: 1300px; top: 200px;"></div>
+
+	<div class="circle" style="left: 80px; top: 190px;"></div>
+	<div class="circle" style="left: 260px; top: 100px;"></div>
+	<div class="circle" style="left: 670px; top: 600px;"></div>
+	<div class="circle" style="left: 280px; top: 350px;"></div>
+
+	<div class="circle" style="left: 180px; top: 210px;"></div>
+	<div class="circle" style="left: 1150px; top: 110px;"></div>
+	<div class="circle" style="left: 690px; top: 60px;"></div>
+	<div class="circle" style="left: 870px; top: 600px;"></div>
+
+
+	
+<script type="text/javascript">
+
+	let circles = document.querySelectorAll(".circle");
+	let left_circles = 100;
+	let top_circles = 60;
+	let left = 100;
+	let height = 80;
+	let width = 80;
+	let height1 = 80;
+	let width1 = 80;
+	let score = 0;
+	
+	
+	function endGame(){
+	    if(score < 16){
+	    	document.querySelector(".b").style.display = "none";
+	    	alert("you died nooo! try again");
+
+	    	
+	    }
+
+	    if (score == 16) {
+	    	document.querySelector(".b").style.display = "none";
+	    	alert("Congrats, king!!");
+	    }
+	}
+
+	for(let i=0; i<16; i=i+1){
+	circles[i].onclick = function(){
+		circles[i].style.display = "none";
+		score = score + 1;
+		document.querySelector(".score").innerHTML = score;
+	}
+	}
+
+	function changeCircle(){
+
+	   left_circles = left_circles + 3;
+	    for(let i=0; i<4; i=i+1){
+	        circles[i].style.left = left_circles * i  + "px";
+	        circles[i].style.opacity = ".3";
+	        circles[i].style.transition = "1.5s";
+	        circles[i].style.border = "1px solid black";
+
+	    }
+
+	    top_circles = top_circles + 1;
+	    for(let i=4; i<8; i=i+1){
+	    	
+	        circles[i].style.top = top_circles * i  + "px";
+	        circles[i].style.opacity = ".3";
+	        circles[i].style.transition = "1.5s";
+	        circles[i].style.border = "1px solid black";
+	        circles[i].style.background = "orange";
+
+	    }
+	    
+	    left = left + 1;
+	   height = height - 5;
+	   width = width - 5;
+	    for(let i=8; i<12; i=i+1){
+	    	
+	        circles[i].style.left = left * i  + "px";
+	        circles[i].style.height = height  + "px";
+	        circles[i].style.width = width  + "px";
+	       	circles[i].style.opacity = ".3";
+	        circles[i].style.transition = "1.5s";
+	        circles[i].style.border = "1px solid black";
+	        circles[i].style.background = "yellow";
+	      
+	    }
+
+	    
+	     for(let i=12; i<16; i=i+1){
+	     	height1 = height1 + 1.5;
+	     	width1 = width1 + 1.5;
+	    	
+	        circles[i].style.height = height1  + "px";
+	        circles[i].style.width = width1  + "px";
+	       	circles[i].style.opacity = ".3";
+	        circles[i].style.transition = "1.5s";
+	        circles[i].style.border = "1px solid black";
+	        circles[i].style.background = "blue";
+
+	    }
+
+	
+	}
+
+	function startGame(){
+	        
+	    setInterval(changeCircle,1000);
+	    setTimeout(endGame, 9000);
+	}
+	setTimeout(startGame, 2000);
+
+</script>
+</body>
+</html>
